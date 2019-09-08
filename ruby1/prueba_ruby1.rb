@@ -61,7 +61,7 @@ while condition != 4
     when 2 #identifica ausentes
         absent     
     when 3 #identifica aprobados
-        approved  
+        approved
     when 4 #termina programa
         puts "Adios"
     else
