@@ -50,7 +50,16 @@ def method1 # Opción 1: Imprimir en pantalla el nombre de cada alumno y el prom
     end
 end
 
-
+def method2 #opción 2: Imprimir en pantalla el nombre de cada alumno y la cantidad de inasistencias
+    z = read_alum('alumnos.csv')
+    z.each do |arr|
+        abs = 0 
+        arr.each_with_index do |val,ind|
+            abs += 1 if val == 'A'
+        end
+        p "#{arr[0]}: #{abs} inasistencias"
+    end
+end
 
 
 option = 0
@@ -60,7 +69,7 @@ while option != 4
     if option == 1
         method1
     elsif option == 2
-        puts 'pendiente'
+        method2
     elsif option == 3
         puts 'pendiente'
     else
