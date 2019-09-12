@@ -10,10 +10,10 @@
 # Para leer el contenido de este archivo utilizaremos el siguiente método:
 
 def read_alum(file_name)
-file = File.open(file_name, 'r')
-alum = file.readlines.map(&:chomp).map { |lines| lines.split(', ') }
-file.close
-alum
+    file = File.open(file_name, 'r')
+    alum = file.readlines.map(&:chomp).map { |lines| lines.split(', ') }
+    file.close
+    alum
 end
 
 # Este método recibe como argumento el nombre del archivo y retorna un array con su contenido.
@@ -38,7 +38,6 @@ def menu
     puts 'opción 3: Imprimir en pantalla los nombres de los alumnos aprobados'
     puts 'opción 4: salir'
 end
-
 def method1 # Opción 1: Imprimir en pantalla el nombre de cada alumno y el promedio de sus notas
     z = read_alum('alumnos.csv')
     z.each do |arr|
@@ -49,7 +48,6 @@ def method1 # Opción 1: Imprimir en pantalla el nombre de cada alumno y el prom
         p "#{arr[0]}: #{ave / ((arr.count)-1)}"
     end
 end
-
 def method2 #opción 2: Imprimir en pantalla el nombre de cada alumno y la cantidad de inasistencias
     z = read_alum('alumnos.csv')
     z.each do |arr|
@@ -60,8 +58,21 @@ def method2 #opción 2: Imprimir en pantalla el nombre de cada alumno y la canti
         p "#{arr[0]}: #{abs} inasistencias"
     end
 end
-
-
+def method3(a_grade,grad=5) # opción 3: Imprimir en pantalla los nombres de los alumnos aprobados'
+    z = read_alum('alumnos.csv')
+    z.each do |arr|
+        ave = 0
+            arr.each_with_index do |val,ind|
+                ave += val.to_f
+            end
+        average = (ave / ((arr.count)-1)) 
+        if average > a_grade
+            puts "#{arr[0]}: aprueba"
+        # elsif
+            # pending
+        end
+    end
+end
 option = 0
 while option != 4
     menu
@@ -71,7 +82,9 @@ while option != 4
     elsif option == 2
         method2
     elsif option == 3
-        puts 'pendiente'
+        puts 'ingresa nota de aprobacion'
+        grade = gets.chomp.to_f
+        method3(grade)
     else
         puts 'ok, bye'
     end
